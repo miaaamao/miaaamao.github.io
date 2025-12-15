@@ -59,7 +59,7 @@ function About() {
         </div>
         <div className="about-right">
           <p className="home-about-body">
-            Hi, I'm Mia Mao, I recently graduated from <span onMouseEnter={showDukeDiplomaPreview} onMouseLeave={hideDukeDiplomaPreview} onClick={handleDukeDiplomaModalShow} style={{ cursor: 'pointer', color: '#00539c' }}>Duke University</span>
+            Hi, I'm Mia Mao, I graduated from <span onMouseEnter={showDukeDiplomaPreview} onMouseLeave={hideDukeDiplomaPreview} onClick={handleDukeDiplomaModalShow} style={{ cursor: 'pointer', color: '#00539c' }}>Duke University</span>
             {dukeIsDiplomaPreviewVisible && (
               <div className="duke-img-preview">
                 <img src={DukeDiplomaPreviewImage} alt="Duke Diploma Preview" style={{ width: '100px', height: 'auto' }}/>

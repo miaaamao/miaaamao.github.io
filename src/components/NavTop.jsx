@@ -37,9 +37,9 @@ function NavTop() {
               <NavLink smooth to="/experiences" onClick={toogleClose}>
                 Experiences
               </NavLink>
-              <NavLink smooth to="/projects" onClick={toogleClose}>
+              {/* <NavLink smooth to="/projects" onClick={toogleClose}>
                 Projects
-              </NavLink>
+              </NavLink> */}
               <NavLink smooth to="/courses" onClick={toogleClose}>
                 Course Taken
               </NavLink>
@@ -100,14 +100,14 @@ function NavTop() {
                 Experiences
               </NavLink>
             </Nav.Link>
-            <Nav.Link className="pe-3">
+            {/* <Nav.Link className="pe-3">
               <NavLink
                 to="/projects"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Projects
               </NavLink>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link className="pe-3">
               <NavLink
                 to="/courses"
@@ -124,14 +124,14 @@ function NavTop() {
                 Skills
               </NavLink>
             </Nav.Link>
-            <Nav.Link className="pe-3">
+            {/* <Nav.Link className="pe-3">
               <NavLink
                 to="/resume"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Resume
               </NavLink>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link>
               <NavLink
                 to="/contact"
