@@ -70,7 +70,6 @@ function About() {
                 <img src={UCSBDiplomaPreviewImage} alt="UCSB Diploma Preview" style={{ width: '100px', height: 'auto' }}/>
               </div>
             )} with a BS in Financial Mathematics and Statistics and a BA in Theater in 2023.
-            <strong> I am currently seeking full-time opportunities as a business analyst, financial analyst, data analyst, or data scientist position.</strong>
           </p>
         </div>
 

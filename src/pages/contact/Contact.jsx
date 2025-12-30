@@ -74,7 +74,7 @@ function Contact() {
                 </div>
               </div>
 
-              <div className="col contact-col animate__animated animate__slideInLeft">
+              {/* <div className="col contact-col animate__animated animate__slideInLeft">
                 <div className="github-wrapper">
                   <h3>
                     <AiFillGithub />
@@ -91,7 +91,7 @@ function Contact() {
                     <AiOutlineArrowRight />
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
