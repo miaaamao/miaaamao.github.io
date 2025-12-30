@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Container, Modal, Button } from 'react-bootstrap';
 import './About.css';

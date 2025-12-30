@@ -1,9 +1,9 @@
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-import "./SideVertical.css";
+import "./SideNav.css";
 import { routes } from "../routes";
 
-function SideVertical(props) {
+function SideNav() {
   const { pathname } = useLocation();
   const date = new Date().toISOString().slice(0, 10);
   const dateOfWeek = new Date().getDay();
@@ -24,13 +24,13 @@ function SideVertical(props) {
 
   const directUp = currentIndex !== -1 ? routes[prevIndex].path : routes[routes.length - 1].path;
   const directDown = currentIndex !== -1 ? routes[nextIndex].path : routes[0].path;
-  
+
   const displayTitle = currentIndex !== -1 ? titlePage : "";
   const displayNumber = currentIndex !== -1 ? numberPage : "--";
 
   return (
     <>
-      <div className="side-vertical">
+      <div className="side-nav">
         <div className="upper-side d-flex">
           <p className="side-title">{displayTitle}</p>
           <p className="side-date">{dateOfWeekInWord} - {dateFormat}</p>
@@ -51,4 +51,4 @@ function SideVertical(props) {
   );
 }
 
-export default SideVertical;
+export default SideNav;

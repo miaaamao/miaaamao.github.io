@@ -31,7 +31,6 @@ function Home() {
         <div className="home-right animate__animated animate__fadeIn animate__slower">
           <img
             className="home-image"
-            style={{ position: 'absolute', left: '1300px', top: '200px' }}
             src={Mia}
             alt="Avatar"
           />

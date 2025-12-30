@@ -47,11 +47,11 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-      "prettier --check ."
+      "eslint --report-unused-disable-directives --max-warnings 0",
+      "prettier --check"
     ],
     "*.{json,css,md,yml}": [
-      "prettier --check ."
+      "prettier --check"
     ]
   }
 }

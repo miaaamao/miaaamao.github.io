@@ -3,6 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Container } from 'react-bootstrap';
 import './Experiences.css';
 import { experiences } from './experiencesData';
+import PropTypes from 'prop-types';
 
 const extractColorFromImage = (imageSrc) => {
     return new Promise((resolve) => {
@@ -75,7 +76,7 @@ class ErrorBoundary extends React.Component {
         this.state = { hasError: false, error: null, errorInfo: null };
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError() {
         return { hasError: true };
     }
 
@@ -101,6 +102,10 @@ class ErrorBoundary extends React.Component {
         return this.props.children;
     }
 }
+
+ErrorBoundary.propTypes = {
+    children: PropTypes.node,
+};
 
 function ExperiencesContent() {
     console.log("Rendering ExperiencesContent component");
@@ -143,8 +148,7 @@ function ExperiencesContent() {
 
     const orderedExperiences = useMemo(() => {
         return [...experiences]
-            .filter((exp) => exp.isActive !== false)
-            .reverse();
+            .filter((exp) => exp.isActive !== false);
     }, []);
 
     return (

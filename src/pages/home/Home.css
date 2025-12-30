@@ -45,6 +45,7 @@
 
 img.home-image {
     width: 400px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 1170px) {

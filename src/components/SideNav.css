@@ -1,10 +1,13 @@
-.side-vertical {
+.side-nav {
     display: flex;
-    justify-content: space-between;
-    height: 550px;
+    gap: 40px;
+    height: calc(100vh - 100px);
     padding: 14px 20px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .side-title {
@@ -40,7 +43,7 @@ a.arrow:hover {
 }
 
 @media (max-width: 992px) {
-    .side-vertical {
+    .side-nav {
         display: none !important;
     }
 }
