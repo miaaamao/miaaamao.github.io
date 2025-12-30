@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import '../../style.css';
+import './Courses.css';
 
 import DukeLogo from "../../assets/img/education/duke.png";
 import UCSBLogo from "../../assets/img/education/ucsb.png";
@@ -21,11 +21,11 @@ function CourseTaken() {
                 </div>
                 <div className="courses-section">
                     <div className="university-course-section">
-                        <h4 className="text-center">Courses taken at <a href="https://www.fuqua.duke.edu/" target="blank" style={{ textDecoration: 'none', cursor: 'pointer', color: '#00539c'}}>Duke University</a></h4> <br/>
+                        <h4 className="text-center">Courses taken at <a href="https://www.fuqua.duke.edu/" target="blank" style={{ textDecoration: 'none', cursor: 'pointer', color: '#00539c' }}>Duke University</a></h4> <br />
                         {renderCourses("Duke")}
                     </div>
                     <div className="university-course-section">
-                        <h4 className="text-center">Courses taken at <a href="https://www.ucsb.edu/" target="blank" style={{ textDecoration: 'none', cursor: 'pointer', color: '#003660'}}>University of California, Santa Barbara</a></h4> <br/>
+                        <h4 className="text-center">Courses taken at <a href="https://www.ucsb.edu/" target="blank" style={{ textDecoration: 'none', cursor: 'pointer', color: '#003660' }}>University of California, Santa Barbara</a></h4> <br />
                         {renderCourses("UCSB")}
                     </div>
                 </div>
@@ -78,9 +78,9 @@ function renderCourses(university) {
         <div className="course-list">
             {courses[university].map((course, index) => (
                 <div key={index} className="course-entry">
-                    <img src={logos[university]} alt={course.title} width="150" height="150"/>
+                    <img src={logos[university]} alt={course.title} width="150" height="150" />
                     <div className="course-info">
-                        <strong>{course.title}</strong><br/>
+                        <strong>{course.title}</strong><br />
                     </div>
                 </div>
             ))}

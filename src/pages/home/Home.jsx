@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import '../../style.css';
+import './Home.css';
 import Mia from '../../assets/img/mia.png';
 import Type from '../../components/Type';
 
@@ -22,7 +22,7 @@ function Home() {
             </span>
           </h1>
           <h2>
-            I'm <span className="name-hover"><Type/></span>
+            I'm <span className="name-hover"><Type /></span>
           </h2>
           <NavLink to="/contact" className="connect-download text-center">
             Let's Connect

@@ -4,8 +4,9 @@ import { HashLink as NavLink } from "react-router-hash-link";
 import { FaAlignRight } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import { useState } from "react";
-import "../style.css";
+import "./NavTop.css";
 import Logo from "../assets/logo.png";
+import { routes } from "../routes";
 
 function NavTop() {
   const [toogleMenu, setToogleMenu] = useState(false);
@@ -28,30 +29,16 @@ function NavTop() {
               <GrClose />
             </button>
             <div className="menu-list">
-              <NavLink smooth to="/" onClick={toogleClose}>
-                Home
-              </NavLink>
-              <NavLink smooth to="/about" onClick={toogleClose}>
-                About
-              </NavLink>
-              <NavLink smooth to="/experiences" onClick={toogleClose}>
-                Experiences
-              </NavLink>
-              {/* <NavLink smooth to="/projects" onClick={toogleClose}>
-                Projects
-              </NavLink> */}
-              <NavLink smooth to="/courses" onClick={toogleClose}>
-                Course Taken
-              </NavLink>
-              <NavLink smooth to="/skills" onClick={toogleClose}>
-                Skills
-              </NavLink>
-              <NavLink smooth to="/resume" onClick={toogleClose}>
-                Resume
-              </NavLink>
-              <NavLink smooth to="/contact" onClick={toogleClose}>
-                Contact
-              </NavLink>
+              {routes.map((route, index) => (
+                <NavLink
+                  key={index}
+                  smooth
+                  to={route.path}
+                  onClick={toogleClose}
+                >
+                  {route.title}
+                </NavLink>
+              ))}
             </div>
           </Container>
         </div>
@@ -65,10 +52,10 @@ function NavTop() {
         <Container fluid className="px-4">
           <Navbar.Brand className="navtop-brand">
             <Link to="/">
-              <img 
-                src={Logo} 
-                alt="Mia's Portfolio" 
-                style={{height: 60, width: 60}}
+              <img
+                src={Logo}
+                alt="Mia's Portfolio"
+                style={{ height: 60, width: 60 }}
               />
             </Link>
           </Navbar.Brand>
@@ -76,70 +63,16 @@ function NavTop() {
             <FaAlignRight />
           </button>
           <Nav className="navtop-list ms-auto">
-            <Nav.Link className="pe-3">
-              <NavLink
-                to="/"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Home
-              </NavLink>
-            </Nav.Link>
-            <Nav.Link className="pe-3">
-              <NavLink
-                to="/about"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                About
-              </NavLink>
-            </Nav.Link>
-            <Nav.Link className="pe-3">
-              <NavLink
-                to="/experiences"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Experiences
-              </NavLink>
-            </Nav.Link>
-            {/* <Nav.Link className="pe-3">
-              <NavLink
-                to="/projects"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Projects
-              </NavLink>
-            </Nav.Link> */}
-            <Nav.Link className="pe-3">
-              <NavLink
-                to="/courses"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Course Taken
-              </NavLink>
-            </Nav.Link>
-            <Nav.Link className="pe-3">
-              <NavLink
-                to="/skills"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Skills
-              </NavLink>
-            </Nav.Link>
-            {/* <Nav.Link className="pe-3">
-              <NavLink
-                to="/resume"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Resume
-              </NavLink>
-            </Nav.Link> */}
-            <Nav.Link>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Contact
-              </NavLink>
-            </Nav.Link>
+            {routes.map((route, index) => (
+              <Nav.Link key={index} className={index < routes.length - 1 ? "pe-3" : ""}>
+                <NavLink
+                  to={route.path}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {route.title}
+                </NavLink>
+              </Nav.Link>
+            ))}
           </Nav>
         </Container>
       </Navbar>

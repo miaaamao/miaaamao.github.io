@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Container, Modal, Button } from 'react-bootstrap';
-import '../../style.css';
+import './About.css';
 import DukeDiploma from "../../assets/diploma/Duke Diploma.pdf";
 import UCSBDiploma from "../../assets/diploma/UCSB Diploma.pdf";
 import DukeDiplomaPreviewImage from "../../assets/diploma/Duke Diploma Preview.png";
@@ -28,7 +28,7 @@ function About() {
   const hideUCSBDiplomaPreview = () => setUCSBIsDiplomaPreviewVisible(false);
   const handleUCSBDiplomaModalShow = () => setShowUCSBModal(true);
   const handleUCSBDiplomaModalClose = () => setShowUCSBModal(false);
-  
+
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
@@ -62,12 +62,12 @@ function About() {
             Hi, I'm Mia Mao, I graduated from <span onMouseEnter={showDukeDiplomaPreview} onMouseLeave={hideDukeDiplomaPreview} onClick={handleDukeDiplomaModalShow} style={{ cursor: 'pointer', color: '#00539c' }}>Duke University</span>
             {dukeIsDiplomaPreviewVisible && (
               <div className="duke-img-preview">
-                <img src={DukeDiplomaPreviewImage} alt="Duke Diploma Preview" style={{ width: '100px', height: 'auto' }}/>
+                <img src={DukeDiplomaPreviewImage} alt="Duke Diploma Preview" style={{ width: '100px', height: 'auto' }} />
               </div>
             )} with a MS in Quantitative Management in Business Analytics, Finance Track, and from <span onMouseEnter={showUCSBDiplomaPreview} onMouseLeave={hideUCSBDiplomaPreview} onClick={handleUCSBDiplomaModalShow} style={{ cursor: 'pointer', color: '#003660' }}>University of California, Santa Barbara</span>
             {ucsbIsDiplomaPreviewVisible && (
               <div className="ucsb-img-preview">
-                <img src={UCSBDiplomaPreviewImage} alt="UCSB Diploma Preview" style={{ width: '100px', height: 'auto' }}/>
+                <img src={UCSBDiplomaPreviewImage} alt="UCSB Diploma Preview" style={{ width: '100px', height: 'auto' }} />
               </div>
             )} with a BS in Financial Mathematics and Statistics and a BA in Theater in 2023.
           </p>
@@ -75,26 +75,26 @@ function About() {
 
         <Modal show={showDukeModal} onHide={handleDukeDiplomaModalClose} size="lg">
           <Modal.Header closeButton>
-              <Modal.Title>My Duke Diploma</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className="pdf-viewer-container">
-                {currentPage > 1 && (
-                  <AiOutlineLeft className="pdf-nav-arrow left-arrow" onClick={goToPreviousPage} />
-                )}
-                <Document file={DukeDiploma} onLoadSuccess={onDocumentLoadSuccess}>
-                  <Page pageNumber={currentPage} />
-                </Document>
-                {currentPage < numPages && (
-                  <AiOutlineRight className="pdf-nav-arrow right-arrow" onClick={goToNextPage} />
-                )}
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleDukeDiplomaModalClose}>
-                Close
-              </Button>
-            </Modal.Footer>
+            <Modal.Title>My Duke Diploma</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="pdf-viewer-container">
+              {currentPage > 1 && (
+                <AiOutlineLeft className="pdf-nav-arrow left-arrow" onClick={goToPreviousPage} />
+              )}
+              <Document file={DukeDiploma} onLoadSuccess={onDocumentLoadSuccess}>
+                <Page pageNumber={currentPage} />
+              </Document>
+              {currentPage < numPages && (
+                <AiOutlineRight className="pdf-nav-arrow right-arrow" onClick={goToNextPage} />
+              )}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleDukeDiplomaModalClose}>
+              Close
+            </Button>
+          </Modal.Footer>
         </Modal>
 
         <Modal show={showUCSBModal} onHide={handleUCSBDiplomaModalClose} size="lg">

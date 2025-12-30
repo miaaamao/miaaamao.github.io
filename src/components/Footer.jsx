@@ -1,10 +1,10 @@
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
-import "../style.css";
+import "./Footer.css";
 
 function Footer() {
   let date = new Date();
   let year = date.getFullYear();
-  
+
   return (
     <>
       <footer className="px-4">
@@ -12,14 +12,14 @@ function Footer() {
           <p>Copyright © 2024 - {year} Mia</p>
         </div>
         <div className="foot-right d-flex">
-          <a
+          {/* <a
             href="https://github.com/miaaamao"
             target="_blank"
             rel="noreferrer"
           >
             <AiFillGithub className="foot-icon" />
             &nbsp;&nbsp;GitHub
-          </a>
+          </a> */}
           <a
             href="https://www.linkedin.com/in/mia-mao0320/"
             target="_blank"

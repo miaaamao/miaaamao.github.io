@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import "./Resume.css";
 import Resume from "../../assets/resume/Mias_Resume_2024.pdf"
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -24,9 +25,9 @@ function ResumeNew() {
                     <title>Mia's Portfolio - Skills</title>
                 </Helmet>
             </HelmetProvider>
-            <Container fluid className="skills-section">
+            <Container fluid className="resume-section">
                 <Row className="resume">
-                    <div className="skills-left animate__animated animate__zoomIn">
+                    <div className="resume-header animate__animated animate__zoomIn">
                         <h3>Resume</h3>
                         <h4>
                             ───&nbsp;&nbsp;Page <strong>07</strong>
@@ -43,13 +44,13 @@ function ResumeNew() {
                             variant="dark"
                             href={Resume}
                             target="_blank"
-                            style={{ maxWidth: "250px", zIndex: 1}}
+                            style={{ maxWidth: "250px", zIndex: 1 }}
                         >
                             <AiOutlineDownload />
                             Download CV
                         </Button>
                     </div>
-                </Row> 
+                </Row>
                 <br /> <br /> <br /> <br /> <br /> <br /> <br />
             </Container>
         </>

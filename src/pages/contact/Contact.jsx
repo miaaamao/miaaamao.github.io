@@ -9,7 +9,7 @@ import { Container } from "react-bootstrap";
 import { FiCopy } from "react-icons/fi";
 import { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import '../../style.css';
+import './Contact.css';
 
 function Contact() {
   const [alreadyCopy, setAlreadyCopy] = useState("Copy");
