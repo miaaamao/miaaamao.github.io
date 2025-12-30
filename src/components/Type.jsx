@@ -1,13 +1,10 @@
-import Typewriter from "typewriter-effect";
+import Typewriter from 'typewriter-effect';
 
 function Type() {
   return (
     <Typewriter
       options={{
-        strings: [
-          'Mia Mao',
-          'Tianqi Mao'
-        ],
+        strings: ['Mia Mao', 'Tianqi Mao'],
         autoStart: true,
         loop: true,
         deleteSpeed: 50,

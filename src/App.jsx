@@ -1,20 +1,17 @@
-import { useState } from "react";
-import { Spinner } from "react-bootstrap";
-import SideNav from "./components/SideNav";
-import Contact from "./pages/contact/Contact";
-import Skills from "./pages/skills/Skills";
-import About from "./pages/about/About";
-import Experiences from "./pages/experiences/Experiences";
-import NavTop from "./components/NavTop";
-import Footer from "./components/Footer";
-import Home from "./pages/home/Home";
-import Resume from "./pages/resume/Resume";
-import "./index.css";
-import Courses from "./pages/courses/Courses";
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import SideNav from './components/SideNav';
+import Contact from './pages/contact/Contact';
+import Skills from './pages/skills/Skills';
+import About from './pages/about/About';
+import Experiences from './pages/experiences/Experiences';
+import NavTop from './components/NavTop';
+import Footer from './components/Footer';
+import Home from './pages/home/Home';
+import Resume from './pages/resume/Resume';
+import './index.css';
+import Courses from './pages/courses/Courses';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [preload, setPreload] = useState(true);
@@ -26,12 +23,12 @@ function App() {
   if (preload) {
     return (
       <>
-        <div className="preload">
+        <div className='preload'>
           <h1>
             <strong>Mia</strong>
           </h1>
           <p>─────</p>
-          <Spinner animation="grow" />
+          <Spinner animation='grow' />
         </div>
       </>
     );
@@ -40,16 +37,16 @@ function App() {
   return (
     <>
       <NavTop />
-      <div className="d-flex">
+      <div className='d-flex'>
         <SideNav />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/experiences" element={<Experiences />}></Route>
-          <Route path="/courses" element={<Courses />}></Route>
-          <Route path="/skills" element={<Skills />}></Route>
-          <Route path="/resume" element={<Resume />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/about' element={<About />}></Route>
+          <Route path='/experiences' element={<Experiences />}></Route>
+          <Route path='/courses' element={<Courses />}></Route>
+          <Route path='/skills' element={<Skills />}></Route>
+          <Route path='/resume' element={<Resume />}></Route>
+          <Route path='/contact' element={<Contact />}></Route>
         </Routes>
       </div>
       <Footer />

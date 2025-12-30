@@ -1,22 +1,22 @@
 /* Archivo */
-@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Manrope */
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 /* Roboto Mono */
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 /* Source Serif Pro */
-@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 
 :root {
-  --first-color: #5B7DB1; /* Moderate Blue */
-  --second-color: #8DB1D3; /* Lighter Blue */
-  --third-color: #F2F4F8; /* Light Grey */
-  --fourth-color: #F0F8FF; /* Alice Blue */
-  --five-color: #C7D2E9; /* Light Lavender Blue */
-  --six-color: #A6DCEF; /* Light Aqua */
+  --first-color: #5b7db1; /* Moderate Blue */
+  --second-color: #8db1d3; /* Lighter Blue */
+  --third-color: #f2f4f8; /* Light Grey */
+  --fourth-color: #f0f8ff; /* Alice Blue */
+  --five-color: #c7d2e9; /* Light Lavender Blue */
+  --six-color: #a6dcef; /* Light Aqua */
 }
 
 * {

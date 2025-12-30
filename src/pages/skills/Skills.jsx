@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './Skills.css';
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap';
 import { Tooltip } from 'react-tooltip';
 import Python from '../../assets/img/techstack/python.png';
 import RLang from '../../assets/img/techstack/rlang.png';
@@ -28,102 +28,213 @@ function Skills() {
           <title>Mia's Portfolio - Skills</title>
         </Helmet>
       </HelmetProvider>
-      <Container fluid className="skills-wrapper">
-        <div className="skills-left animate__animated animate__zoomIn">
+      <Container fluid className='skills-wrapper'>
+        <div className='skills-left animate__animated animate__zoomIn'>
           <h3>Skills</h3>
           <h4>
             ───&nbsp;&nbsp;Page <strong>06</strong>
           </h4>
-        </div> <br /> <br />
-
+        </div>{' '}
+        <br /> <br />
         <h5>Analytics Tools</h5>
-        <div className="skills-right">
-          <Row style={{ justifyContent: "center" }}>
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={Alteryx} height={150} width={150} alt="alteryx" data-tooltip-id="alteryx" data-tooltip-content="Alteryx" />
+        <div className='skills-right'>
+          <Row style={{ justifyContent: 'center' }}>
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={Alteryx}
+                height={150}
+                width={150}
+                alt='alteryx'
+                data-tooltip-id='alteryx'
+                data-tooltip-content='Alteryx'
+              />
             </Col>
-            <Tooltip id="alteryx" place="left" />
+            <Tooltip id='alteryx' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={Excel} height={150} width={150} alt="excel" data-tooltip-id="excel" data-tooltip-content="Excel" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={Excel}
+                height={150}
+                width={150}
+                alt='excel'
+                data-tooltip-id='excel'
+                data-tooltip-content='Excel'
+              />
             </Col>
-            <Tooltip id="excel" place="left" />
+            <Tooltip id='excel' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={LaTex} height={150} width={150} alt="latex" data-tooltip-id="latex" data-tooltip-content="LaTex" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={LaTex}
+                height={150}
+                width={150}
+                alt='latex'
+                data-tooltip-id='latex'
+                data-tooltip-content='LaTex'
+              />
             </Col>
-            <Tooltip id="latex" place="left" />
+            <Tooltip id='latex' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={PowerBI} height={150} width={150} alt="power-bi" data-tooltip-id="power-bi" data-tooltip-content="Power-Bi" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={PowerBI}
+                height={150}
+                width={150}
+                alt='power-bi'
+                data-tooltip-id='power-bi'
+                data-tooltip-content='Power-Bi'
+              />
             </Col>
-            <Tooltip id="power-bi" place="left" />
+            <Tooltip id='power-bi' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={Python} height={150} width={150} alt="python" data-tooltip-id="python" data-tooltip-content="Python" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={Python}
+                height={150}
+                width={150}
+                alt='python'
+                data-tooltip-id='python'
+                data-tooltip-content='Python'
+              />
             </Col>
-            <Tooltip id="python" place="left" />
+            <Tooltip id='python' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={RLang} height={150} width={150} alt="r" data-tooltip-id="r" data-tooltip-content="R" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={RLang}
+                height={150}
+                width={150}
+                alt='r'
+                data-tooltip-id='r'
+                data-tooltip-content='R'
+              />
             </Col>
-            <Tooltip id="r" place="left" />
+            <Tooltip id='r' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={SQL} height={150} width={150} alt="sql" data-tooltip-id="sql" data-tooltip-content="SQL" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={SQL}
+                height={150}
+                width={150}
+                alt='sql'
+                data-tooltip-id='sql'
+                data-tooltip-content='SQL'
+              />
             </Col>
-            <Tooltip id="sql" place="left" />
+            <Tooltip id='sql' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={Tableau} height={150} width={150} alt="tableau" data-tooltip-id="tableau" data-tooltip-content="Tableau" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={Tableau}
+                height={150}
+                width={150}
+                alt='tableau'
+                data-tooltip-id='tableau'
+                data-tooltip-content='Tableau'
+              />
             </Col>
-            <Tooltip id="tableau" place="left" />
+            <Tooltip id='tableau' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={SAS} height={150} width={150} alt="sas" data-tooltip-id="sas" data-tooltip-content="SAS" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={SAS}
+                height={150}
+                width={150}
+                alt='sas'
+                data-tooltip-id='sas'
+                data-tooltip-content='SAS'
+              />
             </Col>
-            <Tooltip id="sas" place="left" />
+            <Tooltip id='sas' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={SPSS} height={150} width={150} alt="spss" data-tooltip-id="spss" data-tooltip-content="SPSS" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={SPSS}
+                height={150}
+                width={150}
+                alt='spss'
+                data-tooltip-id='spss'
+                data-tooltip-content='SPSS'
+              />
             </Col>
-            <Tooltip id="spss" place="left" />
-          </Row> <br /> <br />
+            <Tooltip id='spss' place='left' />
+          </Row>{' '}
+          <br /> <br />
         </div>
-
         <h5>Data Warehouse and Database</h5>
-        <div className="skills-right">
-          <Row style={{ justifyContent: "center" }}>
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={AWS_S3} height={150} width={150} alt="aws s3" data-tooltip-id="aws s3" data-tooltip-content="AWS S3" />
+        <div className='skills-right'>
+          <Row style={{ justifyContent: 'center' }}>
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={AWS_S3}
+                height={150}
+                width={150}
+                alt='aws s3'
+                data-tooltip-id='aws s3'
+                data-tooltip-content='AWS S3'
+              />
             </Col>
-            <Tooltip id="aws s3" place="left" />
+            <Tooltip id='aws s3' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={BigQuery} height={150} width={150} alt="big query" data-tooltip-id="big_query" data-tooltip-content="Big Query" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={BigQuery}
+                height={150}
+                width={150}
+                alt='big query'
+                data-tooltip-id='big_query'
+                data-tooltip-content='Big Query'
+              />
             </Col>
-            <Tooltip id="big_query" place="left" />
+            <Tooltip id='big_query' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={Snowflake} height={150} width={150} alt="snowflake" data-tooltip-id="snowflake" data-tooltip-content="Snowflake" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={Snowflake}
+                height={150}
+                width={150}
+                alt='snowflake'
+                data-tooltip-id='snowflake'
+                data-tooltip-content='Snowflake'
+              />
             </Col>
-            <Tooltip id="snowflake" place="left" />
+            <Tooltip id='snowflake' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={MariaDB} height={150} width={150} alt="maria db" data-tooltip-id="mariadb" data-tooltip-content="MariaDB" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={MariaDB}
+                height={150}
+                width={150}
+                alt='maria db'
+                data-tooltip-id='mariadb'
+                data-tooltip-content='MariaDB'
+              />
             </Col>
-            <Tooltip id="mariadb" place="left" />
+            <Tooltip id='mariadb' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={MySQL} height={150} width={150} alt="mysql" data-tooltip-id="mysql" data-tooltip-content="MySQL" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={MySQL}
+                height={150}
+                width={150}
+                alt='mysql'
+                data-tooltip-id='mysql'
+                data-tooltip-content='MySQL'
+              />
             </Col>
-            <Tooltip id="mysql" place="left" />
+            <Tooltip id='mysql' place='left' />
 
-            <Col xs={4} md={2} className="tech-icons">
-              <img src={SQLServer} height={150} width={150} alt="sql server" data-tooltip-id="sql_server" data-tooltip-content="SQL Server" />
+            <Col xs={4} md={2} className='tech-icons'>
+              <img
+                src={SQLServer}
+                height={150}
+                width={150}
+                alt='sql server'
+                data-tooltip-id='sql_server'
+                data-tooltip-content='SQL Server'
+              />
             </Col>
-            <Tooltip id="sql_server" place="left" />
-
+            <Tooltip id='sql_server' place='left' />
           </Row>
           <br /> <br /> <br /> <br /> <br />
         </div>
