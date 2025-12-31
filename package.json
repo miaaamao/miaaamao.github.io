@@ -11,7 +11,8 @@
     "prettier:check": "prettier --check .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@vitejs/plugin-react-swc": "^3.6.0",
