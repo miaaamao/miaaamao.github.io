@@ -40,8 +40,8 @@ function Contact() {
                     <AiOutlineMail />
                     &nbsp;&nbsp;Email
                   </h3>
-                  <p>tm422@duke.edu</p>
-                  <CopyToClipboard text='tm422@duke.edu'>
+                  <p>tianqimao0320@gmail.com</p>
+                  <CopyToClipboard text='tianqimao0320@gmail.com'>
                     <button className='btn-copy' onClick={actionCopy}>
                       {alreadyCopy}&nbsp;&nbsp;
                       <FiCopy />
