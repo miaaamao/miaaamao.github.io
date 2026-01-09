@@ -134,7 +134,53 @@ function ExperiencesContent() {
   }, [experienceColors]); // Re-run when colors load/render
 
   const orderedExperiences = useMemo(() => {
-    return [...experiences].filter((exp) => exp.isActive !== false);
+    const parseDate = (dateStr) => {
+      if (dateStr.toLowerCase().includes('present')) {
+        return new Date();
+      }
+
+      const monthMap = {
+        january: 0,
+        february: 1,
+        march: 2,
+        april: 3,
+        may: 4,
+        june: 5,
+        july: 6,
+        august: 7,
+        september: 8,
+        october: 9,
+        november: 10,
+        december: 11,
+      };
+
+      const parts = dateStr.trim().toLowerCase().split(' ');
+      if (parts.length >= 2) {
+        const month = monthMap[parts[0]];
+        const year = parseInt(parts[1]);
+        if (month !== undefined && !isNaN(year)) {
+          return new Date(year, month);
+        }
+      }
+
+      return new Date(0);
+    };
+
+    const getEndDate = (duration) => {
+      const parts = duration.split(/\s*(?:-|to)\s*/i);
+      if (parts.length >= 2) {
+        return parseDate(parts[parts.length - 1]);
+      }
+      return parseDate(duration);
+    };
+
+    return [...experiences]
+      .filter((exp) => exp.isActive !== false)
+      .sort((a, b) => {
+        const dateA = getEndDate(a.duration);
+        const dateB = getEndDate(b.duration);
+        return dateB - dateA; // Most recent first
+      });
   }, []);
 
   return (

@@ -34,7 +34,7 @@ export const experiences = [
     company: 'International Division of No.2 High School of ECNU',
     role: 'AP Calculus Tutor & Substitute Math Teacher',
     location: 'Shanghai, China',
-    duration: 'September 2022 - January 2023',
+    duration: 'February 2022 to June 2022',
     achievements: [],
     technologies: [],
     isActive: true,
