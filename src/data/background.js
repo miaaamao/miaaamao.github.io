@@ -101,7 +101,9 @@ export const education = [
     tint: '#e7ecee',
     logo: duke,
     location: 'Durham, NC',
-    degrees: [{ degree: 'Master of Science' }],
+    // As conferred: the diploma reads Master of Science in Quantitative
+    // Management, from the Fuqua School of Business.
+    degrees: [{ degree: 'Master of Science', major: 'Quantitative Management' }],
   },
   {
     period: 'Sep 2019 — Jun 2023',
@@ -117,39 +119,52 @@ export const education = [
   },
 ];
 
-const byStem = (files) =>
-  Object.fromEntries(
-    Object.entries(files).map(([path, url]) => [
-      path
-        .split('/')
-        .pop()
-        .replace(/\.[^.]+$/, ''),
-      url,
-    ]),
-  );
+/**
+ * Diplomas are picked up from the folder rather than imported one by one, so
+ * adding a real one is a file drop and nothing else.
+ *
+ * Names are matched loosely: everything but letters and digits is stripped and
+ * what remains has to start with the school's slug, so `duke.pdf`,
+ * `Duke Diploma.pdf` and `duke-diploma-2024.pdf` all land on Duke. Exporters
+ * name files however they like, and renaming them by hand is the step that
+ * gets forgotten.
+ *
+ * A PDF is drawn by the viewer. An image sitting beside it becomes the poster
+ * the sheet can show immediately, since pdf.js and its worker are the best part
+ * of a megabyte that has to arrive first. Either alone is fine; a school with
+ * neither falls back to the typeset diploma.
+ */
+const stemOf = (path) =>
+  path
+    .split('/')
+    .pop()
+    .replace(/\.[^.]+$/, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
 
-const scans = byStem(
-  import.meta.glob('../assets/diplomas/*.{jpg,jpeg,png}', {
-    eager: true,
-    import: 'default',
-    query: '?url',
-  }),
-);
+const fileFor = (files, slug) => {
+  const hit = Object.keys(files).find((path) => stemOf(path).startsWith(slug));
+  return hit ? files[hit] : null;
+};
 
-const originals = byStem(
-  import.meta.glob('../assets/diplomas/*.pdf', {
-    eager: true,
-    import: 'default',
-    query: '?url',
-  }),
-);
+const IMAGES = import.meta.glob('../assets/diplomas/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
+
+const PDFS = import.meta.glob('../assets/diplomas/*.pdf', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
 
 export const schools = education.map((entry, order) => ({
   ...entry,
   index: String(order + 1).padStart(2, '0'),
   title: entry.place,
-  scan: scans[entry.slug] ?? null,
-  original: originals[entry.slug] ?? null,
+  scan: fileFor(IMAGES, entry.slug),
+  original: fileFor(PDFS, entry.slug),
 }));
 
 export function getSchool(slug) {

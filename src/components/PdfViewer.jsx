@@ -122,28 +122,36 @@ function PdfViewer({ url, label, onReady }) {
 
   if (failed) return null;
 
-  return (
-    <div className='h-full w-full p-[3.5%]'>
-      <div className='flex h-full w-full flex-col'>
-        <div ref={boxRef} className='flex min-h-0 flex-1 items-center justify-center'>
-          <canvas
-            ref={canvasRef}
-            aria-label={label}
-            role='img'
-            className='ring-1 shadow-[0_4px_22px_rgba(10,10,10,0.16)] ring-light-black/10'
-          />
-        </div>
+  const paged = pages > 1;
 
-        {pages > 1 && (
-          <div className='mt-3 flex shrink-0 items-center justify-center gap-2'>
+  return (
+    // No inset. A landscape page is narrower than the sheet, so it is limited
+    // by height anyway, and padding here would only make it smaller — the tint
+    // either side of it is the mat.
+    <div ref={boxRef} className='relative flex h-full w-full items-center justify-center'>
+      <canvas
+        ref={canvasRef}
+        aria-label={label}
+        role='img'
+        className='block ring-1 ring-light-black/10'
+      />
+
+      {paged && (
+        // Centred at the foot of the page, floating over it — the same place
+        // every PDF reader puts it, and over blank paper on a diploma. Padding
+        // the box instead would shrink the page on every visit, and would not
+        // even work: clientWidth/clientHeight include padding, so the fit above
+        // would still size the page to the full box and slide under the pill.
+        <div className='pointer-events-none absolute inset-x-0 bottom-3 flex justify-center'>
+          <div className='pointer-events-auto flex items-center gap-1 rounded-full bg-white/95 p-1 shadow-[0_2px_12px_rgba(10,10,10,0.12)] ring-1 ring-light-black/[0.06] backdrop-blur-sm'>
             <Pager
               label='Previous page'
               disabled={page === 1}
               onClick={() => setPage((n) => n - 1)}
             >
-              <BackIcon style={{ fontSize: 13 }} />
+              <BackIcon style={{ fontSize: 12 }} />
             </Pager>
-            <span className='rounded-full bg-white/90 px-3 py-1.5 text-[0.7rem] tabular-nums text-light-black shadow-[0_2px_10px_rgba(10,10,10,0.08)]'>
+            <span className='min-w-[2.75rem] text-center text-[0.7rem] tabular-nums text-light-black'>
               {page} / {pages}
             </span>
             <Pager
@@ -151,11 +159,11 @@ function PdfViewer({ url, label, onReady }) {
               disabled={page === pages}
               onClick={() => setPage((n) => n + 1)}
             >
-              <NextIcon style={{ fontSize: 13 }} />
+              <NextIcon style={{ fontSize: 12 }} />
             </Pager>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -167,7 +175,7 @@ function Pager({ label, disabled, onClick, children }) {
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className='flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-light-black shadow-[0_2px_10px_rgba(10,10,10,0.08)] transition-opacity disabled:pointer-events-none disabled:opacity-35'
+      className='flex h-8 w-8 items-center justify-center rounded-full text-light-black transition-colors hover:bg-light-black/[0.06] disabled:pointer-events-none disabled:opacity-30'
     >
       {children}
     </button>

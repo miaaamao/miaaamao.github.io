@@ -1,6 +1,11 @@
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
+// The shape of a US diploma, which is what these sheets actually hold. It was
+// an arbitrary 47/30 before, and the difference showed as dead mat down both
+// sides of every scanned page — a document can only fill the sheet if the sheet
+// is the document's shape. Both ends of the scaling transition read this, so
+// the card and the panel stay in step whatever it is set to.
 const ASPECT = 'aspect-[47/30]';
 const CHROME = 'h-[12%]';
 

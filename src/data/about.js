@@ -1,5 +1,7 @@
+import portrait from '../assets/img/mia.webp';
+
 export const about = {
-  portrait: null,
+  portrait,
 
   intro:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

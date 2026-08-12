@@ -8,32 +8,52 @@ const SchoolSheet = forwardRef(function SchoolSheet({ school, variant = 'card' }
   const reading = Boolean(school.current);
   const plural = school.degrees.length > 1;
 
-  const [shown, setShown] = useState(false);
-  const file = variant === 'panel' ? (school.original ?? school.scan) : null;
+  // Only the opened page shows the real document; the deck card stays typeset
+  // so the two ends of the scaling transition match when it lands.
+  const [pdfReady, setPdfReady] = useState(false);
+  const [posterReady, setPosterReady] = useState(false);
+
+  const panel = variant === 'panel';
+  const poster = panel ? school.scan : null;
+  const pdf = panel ? school.original : null;
+  const shown = pdfReady || posterReady;
 
   return (
     <SheetWindow ref={ref} sheet={school} variant={variant}>
       <div className='relative flex w-full items-center justify-center'>
-        {file && (
+        {(poster || pdf) && (
           <div
             className={`absolute inset-0 z-10 transition-opacity duration-500 ${
               shown ? 'opacity-100' : 'pointer-events-none opacity-0'
             }`}
+            // Opaque, so the typeset diploma underneath is covered rather than
+            // glowing through the mat once the document lands.
             style={{ backgroundColor: school.tint }}
           >
-            {school.original ? (
-              <PdfViewer
-                url={school.original}
-                label={`${school.place} diploma`}
-                onReady={() => setShown(true)}
-              />
-            ) : (
-              <div className='flex h-full w-full items-center justify-center p-[3.5%]'>
+            {poster && (
+              // Up first, and out again once the PDF has drawn over it. The
+              // viewer needs pdf.js before it can paint anything; this puts the
+              // diploma on screen in the meantime.
+              <div
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+                  pdfReady ? 'opacity-0' : 'opacity-100'
+                }`}
+              >
                 <img
-                  src={school.scan}
+                  src={poster}
                   alt={`${school.place} diploma`}
-                  onLoad={() => setShown(true)}
-                  className='max-h-full max-w-full object-contain ring-1 shadow-[0_4px_22px_rgba(10,10,10,0.16)] ring-light-black/10'
+                  onLoad={() => setPosterReady(true)}
+                  className='max-h-full max-w-full object-contain ring-1 ring-light-black/10'
+                />
+              </div>
+            )}
+
+            {pdf && (
+              <div className='absolute inset-0'>
+                <PdfViewer
+                  url={pdf}
+                  label={`${school.place} diploma`}
+                  onReady={() => setPdfReady(true)}
                 />
               </div>
             )}
