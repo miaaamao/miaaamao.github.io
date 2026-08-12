@@ -1,16 +1,23 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'animate.css';
-import './index.css';
-import { HashRouter as Router } from 'react-router-dom';
+import { muiTheme } from './lib/muiTheme';
+import './styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <React.StrictMode>
+    <HelmetProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={muiTheme}>
+          <Router>
+            <App />
+          </Router>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </HelmetProvider>
+  </React.StrictMode>,
 );
