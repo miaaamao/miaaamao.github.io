@@ -58,10 +58,6 @@ function About() {
             ))}
 
             <div className='group relative rotate-[-2.5deg] transition-transform duration-500 ease-out hover:rotate-0'>
-              {/* The foot is made by the caption's own margin rather than a
-                  fixed pb with the text absolutely pinned inside it — that way
-                  the gap under the photo is a value, not whatever space the
-                  two lines happened to leave over. */}
               <div className='relative bg-white px-[6%] pt-[6%] pb-[9%] shadow-[0_10px_36px_rgba(10,10,10,0.13)]'>
                 <Placeholder
                   label='Portrait'

@@ -9,20 +9,12 @@ import { gsap } from '../lib/gsap';
 import { useReducedMotion } from '../lib/useReducedMotion';
 import { experience, getRole, placesOf, roles } from '../data/background';
 
-/**
- * Experience as a bubble chamber of professions rather than a list of
- * employers. Size says how close each one sits to the classroom, so the shape
- * of the page is the argument: the teaching is the big stuff and the analyst
- * work orbits it. Pick a bubble and it shows where she did it.
- */
 function Background() {
   const [selected, setSelected] = useState(null);
   const detailRef = useRef(null);
   const reduced = useReducedMotion();
 
-  // The `current: true` flag wins when it is there, otherwise fall back to the
-  // top of the list — the array is reverse-chronological, so adding a job at
-  // the top is enough.
+  // `experience` is reverse-chronological, so the head is the fallback for `current`.
   const current = experience.find((entry) => entry.current) ?? experience[0];
 
   const open = getRole(selected);
@@ -78,13 +70,7 @@ function Background() {
                   >
                     {places.map((place) => (
                       <div key={place.slug} className='flex gap-4'>
-                        {/* Every mark gets the same slot and sits centred in
-                            it. They are a mix of wide wordmarks, circular
-                            crests and stacked lockups, so flushing them left
-                            lines up their bounding boxes but not the marks
-                            themselves — a shared centre axis is what actually
-                            reads as a column. The slot stays even when a logo
-                            is missing so the text never jumps left. */}
+                        {/* Fixed slot, centred: wordmarks and crests only line up on a shared axis. */}
                         <span className='mt-0.5 flex h-8 w-16 shrink-0 items-center justify-center'>
                           {place.logo && (
                             <img
@@ -134,8 +120,6 @@ function Background() {
               ))}
             </dl>
 
-            {/* Nothing else on the page says what the sizes mean, or why some
-                bubbles do not respond to a press. */}
             <p className='mt-6 max-w-xs text-[0.8rem] leading-relaxed text-grey'>
               Every bubble is a role I have worked in, sized by how close it sits to teaching. The
               ones with places behind them open.

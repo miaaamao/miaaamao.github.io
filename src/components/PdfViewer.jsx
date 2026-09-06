@@ -125,9 +125,7 @@ function PdfViewer({ url, label, onReady }) {
   const paged = pages > 1;
 
   return (
-    // No inset. A landscape page is narrower than the sheet, so it is limited
-    // by height anyway, and padding here would only make it smaller — the tint
-    // either side of it is the mat.
+    // No inset: clientWidth/clientHeight include padding, which would shrink the fitted page.
     <div ref={boxRef} className='relative flex h-full w-full items-center justify-center'>
       <canvas
         ref={canvasRef}
@@ -137,11 +135,6 @@ function PdfViewer({ url, label, onReady }) {
       />
 
       {paged && (
-        // Centred at the foot of the page, floating over it — the same place
-        // every PDF reader puts it, and over blank paper on a diploma. Padding
-        // the box instead would shrink the page on every visit, and would not
-        // even work: clientWidth/clientHeight include padding, so the fit above
-        // would still size the page to the full box and slide under the pill.
         <div className='pointer-events-none absolute inset-x-0 bottom-3 flex justify-center'>
           <div className='pointer-events-auto flex items-center gap-1 rounded-full bg-white/95 p-1 shadow-[0_2px_12px_rgba(10,10,10,0.12)] ring-1 ring-light-black/[0.06] backdrop-blur-sm'>
             <Pager

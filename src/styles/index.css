@@ -158,9 +158,7 @@
     0 6px 20px rgba(10, 10, 10, 0.05);
 }
 
-/* The giveaway: interference colours, and only where the film is edge-on. The
-   mask keeps them off the middle, which is what separates a bubble from a
-   marble. Slowly turning, so the bands travel round the rim. */
+/* Interference colours only where the film is edge-on; the mask keeps them off the middle. */
 @utility bubble-sheen {
   background: conic-gradient(
     from 200deg,

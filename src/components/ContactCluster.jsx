@@ -68,8 +68,6 @@ function ContactCluster({ expandable = true }) {
     </>
   );
 
-  // Screens you arrive at deliberately show the ways to reach out up front;
-  // only the index keeps them behind a tap, where the deck is the point.
   if (!expandable) return reachable;
 
   if (!open) {

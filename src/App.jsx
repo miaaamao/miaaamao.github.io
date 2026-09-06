@@ -8,6 +8,7 @@ import Project from './pages/Project';
 import School from './pages/School';
 import Background from './pages/Background';
 import NotFound from './pages/NotFound';
+import SocialMediaStyle from './pages/SocialMediaStyle';
 import { gsap } from './lib/gsap';
 import { hasOrigin } from './lib/transition';
 import { getLenis, useSmoothScroll } from './lib/lenis';
@@ -16,8 +17,12 @@ import { useReducedMotion } from './lib/useReducedMotion';
 const OUT = 0.22;
 const IN = 0.42;
 
+// The quiz is shared as a bare link with students. Opening it should not start
+// with the portfolio owner's name animating in.
+const NO_PRELOAD = ['/social-media-style'];
+
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !NO_PRELOAD.includes(window.location.pathname));
   const finishLoading = useCallback(() => setLoading(false), []);
 
   useSmoothScroll();
@@ -81,6 +86,11 @@ function App() {
       {loading && <Preloader onDone={finishLoading} />}
       <div ref={stageRef}>
         <Routes location={shown}>
+          {/* Deliberately outside Layout: the quiz is a standalone tool with no
+              link to it from anywhere in the portfolio, and it inherits none of
+              the site's outlet context. */}
+          <Route path='/social-media-style' element={<SocialMediaStyle />} />
+
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />

@@ -8,8 +8,7 @@ const SchoolSheet = forwardRef(function SchoolSheet({ school, variant = 'card' }
   const reading = Boolean(school.current);
   const plural = school.degrees.length > 1;
 
-  // Only the opened page shows the real document; the deck card stays typeset
-  // so the two ends of the scaling transition match when it lands.
+  // Only the opened page shows the real document; the deck card stays typeset.
   const [pdfReady, setPdfReady] = useState(false);
   const [posterReady, setPosterReady] = useState(false);
 
@@ -26,14 +25,11 @@ const SchoolSheet = forwardRef(function SchoolSheet({ school, variant = 'card' }
             className={`absolute inset-0 z-10 transition-opacity duration-500 ${
               shown ? 'opacity-100' : 'pointer-events-none opacity-0'
             }`}
-            // Opaque, so the typeset diploma underneath is covered rather than
-            // glowing through the mat once the document lands.
+            // Opaque, or the typeset diploma glows through the mat once the document lands.
             style={{ backgroundColor: school.tint }}
           >
             {poster && (
-              // Up first, and out again once the PDF has drawn over it. The
-              // viewer needs pdf.js before it can paint anything; this puts the
-              // diploma on screen in the meantime.
+              // Shown until pdf.js has loaded and drawn over it.
               <div
                 className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
                   pdfReady ? 'opacity-0' : 'opacity-100'

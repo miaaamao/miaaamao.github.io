@@ -101,8 +101,7 @@ export const education = [
     tint: '#e7ecee',
     logo: duke,
     location: 'Durham, NC',
-    // As conferred: the diploma reads Master of Science in Quantitative
-    // Management, from the Fuqua School of Business.
+    // As conferred by the Fuqua School of Business.
     degrees: [{ degree: 'Master of Science', major: 'Quantitative Management' }],
   },
   {
@@ -119,21 +118,7 @@ export const education = [
   },
 ];
 
-/**
- * Diplomas are picked up from the folder rather than imported one by one, so
- * adding a real one is a file drop and nothing else.
- *
- * Names are matched loosely: everything but letters and digits is stripped and
- * what remains has to start with the school's slug, so `duke.pdf`,
- * `Duke Diploma.pdf` and `duke-diploma-2024.pdf` all land on Duke. Exporters
- * name files however they like, and renaming them by hand is the step that
- * gets forgotten.
- *
- * A PDF is drawn by the viewer. An image sitting beside it becomes the poster
- * the sheet can show immediately, since pdf.js and its worker are the best part
- * of a megabyte that has to arrive first. Either alone is fine; a school with
- * neither falls back to the typeset diploma.
- */
+// Matches loosely: non-alphanumerics stripped, then the stem must start with the school's slug.
 const stemOf = (path) =>
   path
     .split('/')
