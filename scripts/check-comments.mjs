@@ -1,69 +1,109 @@
 import { readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
+import * as espree from 'espree';
 
-const files = execSync("git ls-files 'src/**/*.js' 'src/**/*.jsx' 'src/**/*.css' 'scripts/*.mjs'", {
-  encoding: 'utf8',
-})
-  .split('\n')
-  .filter(Boolean);
+const SCRIPT_GLOBS = ["'src/**/*.js'", "'src/**/*.jsx'", "'scripts/*.mjs'"];
+const STYLE_GLOBS = ["'src/**/*.css'"];
+
+const tracked = (globs) =>
+  execSync(`git ls-files ${globs.join(' ')}`, { encoding: 'utf8' })
+    .split('\n')
+    .filter(Boolean);
+
+// lint-staged appends the staged paths; with none, sweep everything tracked.
+const argued = process.argv.slice(2);
+const scripts = argued.length
+  ? argued.filter((f) => /\.(js|jsx|mjs)$/.test(f))
+  : tracked(SCRIPT_GLOBS);
+const styles = argued.length ? argued.filter((f) => f.endsWith('.css')) : tracked(STYLE_GLOBS);
 
 const problems = [];
 const flag = (file, line, why) => problems.push(`${file}:${line}  ${why}`);
 
-const isJsx = (line) => line.trim().startsWith('{/*');
-const allowsRunOn = (line) => line.includes('eslint-disable-next-line');
+const exempt = (line = '') => line.includes('eslint-disable-next-line');
 
-for (const file of files) {
+// Textual scanning cannot tell a comment from the string '/*', so comments come from the parser.
+function checkScript(file) {
+  const source = readFileSync(file, 'utf8');
+  const lines = source.split('\n');
+
+  let parsed;
+  try {
+    parsed = espree.parse(source, {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      comment: true,
+      loc: true,
+      ecmaFeatures: { jsx: true },
+    });
+  } catch (error) {
+    flag(file, error.lineNumber ?? 1, `could not parse: ${error.message}`);
+    return;
+  }
+
+  let previousLine = -2;
+
+  for (const comment of parsed.comments) {
+    const { line: start } = comment.loc.start;
+    const { line: end } = comment.loc.end;
+
+    if (comment.type === 'Block') {
+      if (comment.value.startsWith('*')) flag(file, start, 'JSDoc block — use // instead');
+      if (end > start) flag(file, start, `block comment spans ${end - start + 1} lines`);
+      continue;
+    }
+
+    // Only leading comments can be a wrapped narration; a trailing one has code before it.
+    if (lines[start - 1].slice(0, comment.loc.start.column).trim() !== '') continue;
+
+    const runsOn = start === previousLine + 1;
+    if (runsOn && !exempt(lines[start - 1]) && !exempt(lines[previousLine - 1])) {
+      flag(file, previousLine, 'two comment lines in a row — cut it, do not reflow');
+    }
+    previousLine = start;
+  }
+}
+
+function checkStyle(file) {
   const lines = readFileSync(file, 'utf8').split('\n');
-  const css = file.endsWith('.css');
-
-  let blockStart = 0;
-  let inBlock = false;
-  let run = 0;
+  let start = 0;
+  let open = false;
+  let previous = -2;
 
   lines.forEach((raw, i) => {
     const no = i + 1;
     const text = raw.trim();
 
-    if (inBlock) {
+    if (open) {
       if (text.includes('*/')) {
-        inBlock = false;
-        if (no > blockStart)
-          flag(file, blockStart, `block comment spans ${no - blockStart + 1} lines`);
+        open = false;
+        flag(file, start, `block comment spans ${no - start + 1} lines`);
       }
       return;
     }
 
-    const opens = text.indexOf('/*');
-    if (opens !== -1 && !text.slice(0, opens).includes('//')) {
-      if (text.startsWith('/**')) flag(file, no, 'JSDoc block — use // instead');
-      const closes = text.indexOf('*/', opens + 2);
-      if (closes === -1) {
-        inBlock = true;
-        blockStart = no;
-      }
-      run = 0;
+    if (!text.startsWith('/*')) return;
+
+    if (text.includes('*/')) {
+      if (no === previous + 1)
+        flag(file, previous, 'two comment lines in a row — cut it, do not reflow');
+      previous = no;
       return;
     }
 
-    const isLineComment = css
-      ? false
-      : text.startsWith('//') || (isJsx(text) && text.endsWith('*/}'));
-
-    if (isLineComment) {
-      run += 1;
-      if (run === 2 && !allowsRunOn(raw) && !allowsRunOn(lines[i - 1] ?? '')) {
-        flag(file, no - 1, 'two comment lines in a row — cut it, do not reflow');
-      }
-    } else if (text !== '') {
-      run = 0;
-    }
+    open = true;
+    start = no;
   });
 }
+
+scripts.forEach(checkScript);
+styles.forEach(checkStyle);
+
+const scanned = scripts.length + styles.length;
 
 if (problems.length) {
   console.error(`comment-style: ${problems.length} violation(s)\n`);
   problems.forEach((p) => console.error('  ' + p));
   process.exit(1);
 }
-console.log(`comment-style: clean (${files.length} files)`);
+console.log(`comment-style: clean (${scanned} files: .js .jsx .mjs .css)`);
